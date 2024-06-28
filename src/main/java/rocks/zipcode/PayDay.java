@@ -1,5 +1,8 @@
 package rocks.zipcode;
 
+import java.sql.Array;
+import java.sql.Time;
+
 /**
  * rocks.zipcode.PayDay
  *
@@ -48,16 +51,27 @@ public class PayDay {
     * netPay = grossPay – deduction
     * return name, grossPay, deduction, netPay as String
      */
-    public String pay(String n, double rate, double worked, double deduct) {
-        return null;
-    }
+    public static String pay(String n, double rate, double worked, double deduct) {
 
+        double grossPay, deduction, netPay;
+
+        grossPay = rate * worked;
+        deduction = grossPay * deduct;
+        netPay = grossPay - deduction;
+
+        String formatGross = String.format("%.2f", grossPay);
+        String formatHours = String.format("%.2f", deduction);
+
+        String answer = n + " " + formatGross + " " + formatHours + " " + netPay;
+    return answer;
+    }
+//Kris 215.00 10.75 204.25
 
     /**
      * for the example of how the *pay* method might be used to create a text report
      *
      */
-    private class TimeCard {
+    private static class TimeCard {
         private String name;
         private double hoursWorked;
         private double hourlyRate;
